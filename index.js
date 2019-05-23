@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios').default;
-const { pickDate } = require('./util');
+const { pickDate, generateBtc, generateBrita } = require('./util');
 
 const app = express();
 app.use(cors());
@@ -30,9 +30,10 @@ app.get('/coins', (req, res) => {
     .then(
       axios.spread((btcResp, dollarResp) => {
         const response = {
-          bitcoin: btcResp.data.ticker,
-          brita: dollarResp.data.value[0]
+          bitcoin: generateBtc(btcResp.data.ticker && btcResp.data.ticker),
+          brita: generateBrita(dollarResp.data.value[0])
         };
+        console.log('response: ', response);
         res.status(200).send(response);
       })
     )

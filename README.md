@@ -13,6 +13,11 @@ or
 $ yarn server
 ```
 
+## Methods
+
+### GET /coins - Get all coins
+
+
 Api live url: 
 - https://mvf-api-coins.herokuapp.com
 
